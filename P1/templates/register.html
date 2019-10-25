@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        REGISTER form
+        <title>Register</title>
+        <link rel="stylesheet" href={{stylesheet}}>
+        <script src={{javascript}}></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form action="/register" method="post">
+            <ul style="list-style-type:none;">
+                <li>
+                    <label for="fname" >First Name:</label>
+                    <input type="text" name="firstname" id="fname" onchange="checkName()" required autofocus>
+                </li>
+                <li>
+                    <label for="lname">Last Name: </label>
+                    <input type="text" name="lastname" id="lname" onchange="checkName()" required>
+                </li>
+                <li>
+                    <label for="password">Password: </label>
+                    <input type="password" name="passowrd" id="password" onchange="checkPassword()" required>
+                </li>
+                <li>
+                    <label for="confirm-password">Confirm password: </label>
+                    <input type="password" name="confirm-password" id="confirm-password" onchange="checkPassword()" required>
+                </li>
+                <li>
+                    <label for="birthdate">Birth Date: </label>
+                    <input type="date" name="birthdate" id="birthdate" onchange="checkDate()" min="1900-01-01" required>
+                </li>
+                <li>
+                    <label for="login">Login: </label>
+                    <input type="text" name="login" id="login" onchange="checkLogin()" required>
+                </li>
+                <li>
+                    <label for="pesel">Pesel: </label>
+                    <input type="number" name="pesel" id="pesel" onchange="checkPesel()" required>
+                </li>
+                <li>
+                    <fieldset>
+                        <legend>Sex</legend>
+                        <label for="sex-woman">Female </label>
+                        <input type="radio" name="sex" id="sex-woman" value="F" required>
+                        <label for="sex-man">Male </label>
+                        <input type="radio" name="sex" id="sex-man" value="M" required>
+                    </fieldset>
+                </li>
+                <li>
+                    <label for="photo">Profile picture: </label>
+                    <input type="file" name="photo" id="photo" required>
+                </li>
+                <li><input type="submit" value="Submit" onsubmit="checkForm()"></li>
+            </ul>
+        </form>
+    </body>
+</html>
