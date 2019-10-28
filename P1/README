@@ -1,0 +1,11 @@
+Aby uruchomić kontener należy na początku zbudować obraz dockera poleceniem:
+docker build -t bmich .
+
+a następnie uruchomić polecenie:
+
+sudo docker run -p5000:5000 bmich
+
+Formularz będzie dostępny pod adresem
+http://localhost:5000/
+
+
