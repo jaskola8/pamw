@@ -11,13 +11,13 @@ app = Flask(__name__)
 @app.route('/user/<username>', methods=['POST'])
 def get(username):
   response = make_response('', 404)
-  if username in users:
+  if username not in users:
     response.status_code = 200
 
   return response
 
 
-@app.route('/register', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 def register():
   if request.method == 'GET':
     return render_template('register.html', stylesheet=url_for('static', filename='style.css'),
@@ -68,10 +68,11 @@ def valid(field, value):
   if field == 'pesel':
     if len(value) != 11:
       return False
-    wk, w = 0, [1,3,7,9]
+    wk, w = 0, [9,7,3,1]
     for i in range(10):
-      wk = (wk + int(value[i])*w[i % 4]) % 10
+      wk += int(value[i])*w[i % 4]
     k = wk % 10
+    print(k)
     return int(value[10]) == k 
   if field == 'sex':
     return value in ('M', 'F')

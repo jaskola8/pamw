@@ -1,0 +1,50 @@
+body {
+    display: table;
+    margin: auto;
+    background: aliceblue;
+    font-family: Roboto, sans-serif;
+}
+.error {
+    font-size: 12px;
+    color: red;
+    display: block;
+    margin-top: 5px;
+}
+ul {
+    width: 400px;
+}
+li {
+    display: block;
+    margin-bottom: 10px;
+}
+label {
+    display: inline-block;
+    width: 200px;
+    text-align: left;
+}
+
+input[type=text],
+input[type=password],
+input[type=date]{
+    width: 400px;
+    margin: auto;
+
+}
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=date]:focus{
+    border: 2px solid black;
+    border-radius: 4px;
+}
+#choices {
+    display: block;
+    width: 100px;
+    float: left;
+}
+input[type=radio] {
+    float: left;
+}
+.invalid {
+    color: red;
+    border-bottom: 2px solid red;
+}

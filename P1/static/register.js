@@ -4,8 +4,8 @@ const passError = "Hasło powinno składać sie z co najmniej 8 małych lub duż
 const repPassError = "Hasła nie są identyczne";
 const birthDateError = "Niepoprawna data urodzin";
 const peselError = "Niepoprawny numer PESEL";
-const sexError = "Wybrana płeć nie jest zgodna z numerem pesel";
-const nameRegExp = /^[a-zA-Zą-żĄ-Ż]*$/;
+const sexError = "Wybrana płeć nie jest zgodna z numerem PESEL";
+const nameRegExp = /^[A-Z][a-zA-Zą-żĄ-Ż]+$/;
 const passRegExp = /^[A-z]{8,}$/;
 const peselRegExp = /^[0-9]{11}$/;
 const usernamePending = "Sprawdzanie...";
@@ -19,6 +19,7 @@ let birthDate = document.getElementById('birthdate');
 let pesel = document.getElementById('pesel');
 let sexs = document.getElementsByName('sex');
 let submit = document.getElementById('submit');
+let login = document.getElementById('login');
 
 function makeInvalid(element, text) {
     let error = document.createElement("span");
@@ -114,14 +115,17 @@ submit.addEventListener("input", function ( event ) {
         event.preventDefault();
     }
 });
-submit.addEventListener( "input", function (event)  {
-    let username = submit.value;
+login.addEventListener( "input", function (event)  {
+    let username = login.value;
     let request = new XMLHttpRequest();
     request.open('POST', '/user/' + username);
     request.onload = function() {
-        genCheck(username, "", true);
-        genCheck(username, usernameError, request.status == 200)
+        genCheck(login, "", true);
+        genCheck(login, usernameError, request.status == 200)
     };
     request.send();
-    genCheck(username, usernamePending, false)
+    genCheck(login, usernamePending, false)
+});
+password.addEventListener("input", function() {
+    genCheck(repPass, repPassError, (repPass.value.localeCompare(password.value) == 0))
 });
