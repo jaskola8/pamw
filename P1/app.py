@@ -8,15 +8,10 @@ from datetime import datetime as dt
 users = {}
 app = Flask(__name__)
 
-
-@app.route('/user/<username>', methods=['GET','OPTIONS','HEAD'])
+@app.route('/user/<username>', methods=['POST'])
 def get(username):
   response = make_response('', 404)
-  response.headers["Access-Control-Allow-Origin"] = "*"
-  response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-
   if username in users:
-    response.body = json.dumps(users[username])
     response.status_code = 200
 
   return response
@@ -69,14 +64,14 @@ def valid(field, value):
     except ValueError:
       return False
   if field == 'login':
-    return re.compile('[a-z]{3,12}').match(value)
+    return True
   if field == 'pesel':
     if len(value) != 11:
       return False
     wk, w = 0, [1,3,7,9]
     for i in range(10):
       wk = (wk + int(value[i])*w[i % 4]) % 10
-    k = (10 - wk) % 10
+    k = wk % 10
     return int(value[10]) == k 
   if field == 'sex':
     return value in ('M', 'F')
